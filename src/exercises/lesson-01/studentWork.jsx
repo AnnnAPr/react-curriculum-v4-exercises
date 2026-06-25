@@ -12,7 +12,6 @@ export default function StudentWork() {
       {/* add JSX here */}
       <h1>About Me</h1>
       <p>
-        {' '}
         I am {name} and I am {age} years old.{' '}
       </p>
       <h2>My hobbies are:</h2>

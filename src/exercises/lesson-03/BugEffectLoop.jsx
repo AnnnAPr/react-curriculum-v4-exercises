@@ -15,10 +15,10 @@ export default function BugEffectLoop() {
 
   useEffect(() => {
     setCount(count + 1);
-  });
+  }, []);
 
   return <p>Bug 1 Count: {count}</p>;
 }
 
 // Explanation:
-// (Write your explanation here)
+// Empty dependency array says React that this effect doesn't depend on anything and run once when the component mounts.

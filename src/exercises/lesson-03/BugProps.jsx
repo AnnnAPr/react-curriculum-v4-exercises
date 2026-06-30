@@ -12,11 +12,13 @@
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
 
+import { useState } from 'react';
+
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -28,4 +30,8 @@ export default function BugProps({ name = 'friend' }) {
 }
 
 // Explanation:
-// (Write your explanation here)
+// Before the "message" variable was regular JavaScript variable, not React state.
+// And React didn't have any idea it was changed.
+// After useState hook usage react knows and re-render component
+// And "handleChange" function before just updated "message" variable, but now it's React state
+// Now it update React state using "setMessage" function.

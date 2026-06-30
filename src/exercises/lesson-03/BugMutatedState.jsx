@@ -10,11 +10,10 @@
 
 import { useState } from 'react';
 export default function BugMutatedState() {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    setCount(count + 1);
   }
 
   return (
@@ -26,4 +25,5 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// We have set function to mutate state "count" variable. So, it should happen inside "setCount".
+// It should be "const count" not "let count" because we should update "count" variable through "setCount".

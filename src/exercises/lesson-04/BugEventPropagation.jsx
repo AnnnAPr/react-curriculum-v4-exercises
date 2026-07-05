@@ -6,7 +6,8 @@ export default function BugEventPropagation() {
     alert("RED BOX CLICKED ❌ Don't show me!");
   }
 
-  function handleInnerClick() {
+  function handleInnerClick(e) {
+    e.stopPropagation();
     alert('Button Clicked ✅');
   }
 
@@ -22,3 +23,5 @@ export default function BugEventPropagation() {
     </>
   );
 }
+
+// event stop propagation was added to the most inner element which is <button> to stop bubbling effect to outer <div>element

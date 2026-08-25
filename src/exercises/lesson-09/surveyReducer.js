@@ -97,12 +97,74 @@ export function surveyReducer(state, action) {
     case 'UPDATE_QUESTION_TEXT':
       // TODO: Implement this action
       console.log('TODO: Implement UPDATE_QUESTION_TEXT action');
-      return state;
+      // return state;
+      return {
+        ...state,
+        questions: state.questions.map((q) =>
+          q.id === action.payload.questionId
+            ? { ...q, question: action.payload.question }
+            : q
+        ),
+      };
 
     case 'DELETE_QUESTION':
       // TODO: Implement this action
       console.log('TODO: Implement DELETE_QUESTION action');
-      return state;
+      // return state;
+      return {
+        ...state,
+        questions: state.questions.filter(
+          (q) => q.id !== action.payload.questionId
+        ),
+        ui: {
+          ...state.ui,
+          editingQuestionId: null,
+        },
+      };
+
+    case 'ADD_OPTION_TO_QUESTION':
+      return {
+        ...state,
+        questions: state.questions.map((q) =>
+          q.id === action.payload.questionId && q.type === 'multiple-choice'
+            ? { ...q, options: [...q.options, action.payload.optionText] }
+            : q
+        ),
+      };
+
+    case 'UPDATE_OPTION_TEXT':
+      return {
+        ...state,
+        questions: state.questions.map((q) =>
+          q.id === action.payload.questionId
+            ? {
+                ...q,
+                options: q.options.map((opt, idx) =>
+                  idx === action.payload.optionIndex
+                    ? action.payload.newText
+                    : opt
+                ),
+              }
+            : q
+        ),
+      };
+
+    case 'DELETE_OPTION_FROM_QUESTION':
+      return {
+        ...state,
+        questions: state.questions.map((q) =>
+          q.id === action.payload.questionId &&
+          q.type === QUESTION_TYPES.MULTIPLE_CHOICE &&
+          q.options.length > 2
+            ? {
+                ...q,
+                options: q.options.filter(
+                  (_, idx) => idx !== action.payload.optionIndex
+                ),
+              }
+            : q
+        ),
+      };
 
     default:
       return state;

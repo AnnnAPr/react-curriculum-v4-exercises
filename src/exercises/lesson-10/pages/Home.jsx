@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function Home({ products }) {
   return (
@@ -41,6 +41,7 @@ export default function Home({ products }) {
             <p style={{ margin: 0 }}>
               <strong>${p.price.toFixed(2)}</strong>
             </p>
+            <Link to={`/products/${p.id}`}>View</Link>
           </article>
         ))}
       </div>

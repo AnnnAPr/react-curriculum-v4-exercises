@@ -9,7 +9,6 @@ export default function Header({ user }) {
     borderRadius: 6,
     backgroundColor: isActive ? '#eee' : 'transparent',
   });
-
   return (
     <header style={{ padding: 12, borderBottom: '1px solid #ddd' }}>
       <h1 style={{ margin: 0 }}>Lesson 10 Routing Demo</h1>
@@ -22,6 +21,20 @@ export default function Header({ user }) {
         >
           History API (MDN)
         </a>
+      </nav>
+
+      <nav style={{ display: 'flex', gap: '15px' }}>
+        <NavLink to="/" style={navLinkStyles}>
+          Home
+        </NavLink>
+        <NavLink to="/checkout" style={navLinkStyles}>
+          Checkout
+        </NavLink>
+        {user.isLoggedIn && (
+          <NavLink to="/account" style={navLinkStyles}>
+            Account
+          </NavLink>
+        )}
       </nav>
 
       <div style={{ marginTop: 8 }}>
